@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publier une Annonce - KOWEÏT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>KOWEÏT</h1>
+                        <p class="tagline">Votre Marketplace #1 au Congo</p>
+                    </a>
+                </div>
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="annonces.html" class="nav-link">Annonces</a>
+                    <a href="compte.html" class="nav-link">Mon Compte</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Publish Form -->
+    <section class="publish-section">
+        <div class="container">
+            <div class="publish-container">
+                <h2 class="page-title">📝 Publier une annonce</h2>
+                <p class="page-subtitle">C'est gratuit et rapide !</p>
+                
+                <form id="publish-form" class="publish-form">
+                    <!-- Photos -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Photos du produit</h3>
+                        <p class="form-help">Ajoutez au moins une photo (max 5 photos)</p>
+                        
+                        <div class="photo-upload">
+                            <input type="file" id="photo-input" accept="image/*" multiple style="display: none;">
+                            <label for="photo-input" class="photo-upload-btn">
+                                <span class="upload-icon">📷</span>
+                                <span>Ajouter des photos</span>
+                            </label>
+                            
+                            <div id="photo-preview" class="photo-preview">
+                                <!-- Les miniatures apparaîtront ici -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informations du produit -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Informations du produit</h3>
+                        
+                        <div class="form-group">
+                            <label for="title" class="form-label">Titre de l'annonce *</label>
+                            <input type="text" id="title" class="form-input" placeholder="Ex: iPhone 12 Pro 128GB en bon état" required maxlength="100">
+                            <span class="form-help">Maximum 100 caractères</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category" class="form-label">Catégorie *</label>
+                            <select id="category" class="form-input" required>
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="telephones">📱 Téléphones</option>
+                                <option value="meubles">🛋️ Meubles</option>
+                                <option value="friperie">👕 Friperie</option>
+                                <option value="voitures">🚗 Voitures</option>
+                                <option value="electromenagers">🔌 Électroménagers</option>
+                                <option value="immobilier">🏠 Immobilier</option>
+                                <option value="electronique">💻 Électronique</option>
+                                <option value="autres">📦 Autres</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="condition" class="form-label">État du produit *</label>
+                            <select id="condition" class="form-input" required>
+                                <option value="">Sélectionnez l'état</option>
+                                <option value="BRAND_NEW">✨ Tout neuf (jamais ouvert)</option>
+                                <option value="NEW_PERFECT">🆕 Neuf en parfait état</option>
+                                <option value="USED_GOOD">✅ Occasion bon état</option>
+                                <option value="USED">📦 Occasion</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description" class="form-label">Description *</label>
+                            <textarea id="description" class="form-textarea" rows="6" placeholder="Décrivez votre produit en détail (état, marque, modèle, etc.)" required maxlength="1000"></textarea>
+                            <span class="form-help">Maximum 1000 caractères</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price" class="form-label">Prix (USD) *</label>
+                            <input type="number" id="price" class="form-input" placeholder="Ex: 500" min="0" step="0.01" required>
+                            <span class="form-help">Indiquez 0 si c'est pour un échange/troc</span>
+                        </div>
+                    </div>
+
+                    <!-- Localisation -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Localisation</h3>
+                        
+                        <div class="form-group">
+                            <label for="commune" class="form-label">Commune de Kinshasa *</label>
+                            <select id="commune" class="form-input" required onchange="updateQuartiers()">
+                                <option value="">Sélectionnez une commune</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quartier" class="form-label">Quartier *</label>
+                            <select id="quartier" class="form-input" required>
+                                <option value="">Sélectionnez d'abord une commune</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Contact</h3>
+                        
+                        <div class="form-group">
+                            <label for="whatsapp" class="form-label">Numéro WhatsApp *</label>
+                            <input type="tel" id="whatsapp" class="form-input" placeholder="+243 XXX XXX XXX" required pattern="[0-9+\s-]+">
+                            <span class="form-help">Les acheteurs vous contacteront sur WhatsApp</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="seller-name" class="form-label">Votre nom *</label>
+                            <input type="text" id="seller-name" class="form-input" placeholder="Ex: Jean Kabongo" required>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            ✓ Publier l'annonce
+                        </button>
+                        <a href="index.html" class="btn btn-secondary">Annuler</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOWEÏT</h3>
+                    <p>La marketplace congolaise gratuite pour acheter, vendre et échanger</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="annonces.html">Annonces</a></li>
+                        <li><a href="publier.html">Publier</a></li>
+                        <li><a href="compte.html">Mon Compte</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📧 contact@koweit.cd</li>
+                        <li>📱 WhatsApp: +243 XXX XXX XXX</li>
+                        <li>📍 Kinshasa, RD Congo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 KOWEÏT Marketplace. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de base -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Nouveaux scripts (améliorations) -->
+    <script src="js/communes.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/moderation.js"></script>
+    
+    <!-- Script de la page -->
+    <script src="js/publier.js"></script>
+    
+    <!-- Script pour charger les communes -->
+    <script>
+        // Charger les 24 communes au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            const communeSelect = document.getElementById('commune');
+            const communes = getAllCommunes();
+            
+            communes.forEach(commune => {
+                const option = document.createElement('option');
+                option.value = commune.id;
+                option.textContent = commune.name;
+                communeSelect.appendChild(option);
+            });
+        });
+
+        // Mettre à jour les quartiers quand on change de commune
+        function updateQuartiers() {
+            const communeId = document.getElementById('commune').value;
+            const quartierSelect = document.getElementById('quartier');
+            
+            // Vider les quartiers
+            quartierSelect.innerHTML = '<option value="">Sélectionnez un quartier</option>';
+            
+            if (communeId) {
+                const quartiers = getQuartiersForCommune(communeId);
+                quartiers.forEach(quartier => {
+                    const option = document.createElement('option');
+                    option.value = quartier;
+                    option.textContent = quartier;
+                    quartierSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
