@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - KOWEÏT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>KOWEÏT</h1>
+                        <p class="tagline">Votre Marketplace #1 au Congo</p>
+                    </a>
+                </div>
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="annonces.html" class="nav-link">Annonces</a>
+                    <a href="compte.html" class="nav-link active">Mon Compte</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <!-- Login/Register Form -->
+            <div id="auth-container" class="auth-container">
+                <h2 class="page-title">👤 Mon Compte</h2>
+                
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Connexion</button>
+                    <button class="auth-tab" data-tab="register">Inscription</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-whatsapp" class="form-label">Numéro WhatsApp</label>
+                        <input type="tel" id="login-whatsapp" class="form-input" placeholder="+243 XXX XXX XXX" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">Se connecter</button>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Nom complet *</label>
+                        <input type="text" id="register-name" class="form-input" placeholder="Ex: Jean Kabongo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-whatsapp" class="form-label">Numéro WhatsApp *</label>
+                        <input type="tel" id="register-whatsapp" class="form-input" placeholder="+243 XXX XXX XXX" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email (optionnel)</label>
+                        <input type="email" id="register-email" class="form-input" placeholder="exemple@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-commune" class="form-label">Commune *</label>
+                        <select id="register-commune" class="form-input" required>
+                            <option value="">Sélectionnez une commune</option>
+                            <option value="gombe">Gombe</option>
+                            <option value="kalamu">Kalamu</option>
+                            <option value="lemba">Lemba</option>
+                            <option value="limete">Limete</option>
+                            <option value="masina">Masina</option>
+                            <option value="matete">Matete</option>
+                            <option value="ngaliema">Ngaliema</option>
+                            <option value="kintambo">Kintambo</option>
+                            <option value="barumbu">Barumbu</option>
+                            <option value="kinshasa">Kinshasa</option>
+                            <option value="mont-ngafula">Mont-Ngafula</option>
+                            <option value="ndjili">N'djili</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">Créer mon compte</button>
+                </form>
+            </div>
+
+            <!-- User Dashboard -->
+            <div id="dashboard-container" class="dashboard-container" style="display: none;">
+                <div class="dashboard-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-info">
+                            <h2 id="user-name">Nom de l'utilisateur</h2>
+                            <p id="user-location">📍 Commune</p>
+                            <p id="user-whatsapp">📱 WhatsApp</p>
+                        </div>
+                    </div>
+                    <button id="logout-btn" class="btn btn-secondary">Déconnexion</button>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <h3 id="total-listings">0</h3>
+                            <p>Mes annonces</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">👁️</div>
+                        <div class="stat-info">
+                            <h3 id="total-views">0</h3>
+                            <p>Vues totales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <h3>Nouveau</h3>
+                            <p>Statut</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-actions">
+                    <a href="publier.html" class="btn btn-primary">
+                        <span>➕</span> Publier une annonce
+                    </a>
+                </div>
+                
+                <div class="my-listings">
+                    <h3 class="section-title">Mes annonces</h3>
+                    <div class="listings-grid" id="user-listings">
+                        <!-- Les annonces de l'utilisateur seront chargées ici -->
+                        <p class="empty-message">Vous n'avez pas encore publié d'annonce</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOWEÏT</h3>
+                    <p>La marketplace congolaise gratuite pour acheter, vendre et échanger</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="annonces.html">Annonces</a></li>
+                        <li><a href="publier.html">Publier</a></li>
+                        <li><a href="compte.html">Mon Compte</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📧 contact@koweit.cd</li>
+                        <li>📱 WhatsApp: +243 XXX XXX XXX</li>
+                        <li>📍 Kinshasa, RD Congo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 KOWEÏT Marketplace. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de base -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Nouveaux scripts (améliorations) -->
+    <script src="js/communes.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/moderation.js"></script>
+    
+    <!-- Script de la page -->
+    <script src="js/compte.js"></script>
+</body>
+</html>
