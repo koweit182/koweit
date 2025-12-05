@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'No build needed'",
-    "start": "vercel dev"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "mongodb": "^6.3.0",
